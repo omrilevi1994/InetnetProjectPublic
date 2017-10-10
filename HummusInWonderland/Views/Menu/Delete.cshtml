@@ -1,0 +1,68 @@
+﻿@@ -0,0 +1,66 @@
+﻿@model HummusInWonderland.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div dir="rtl">
+    <h2>מחק</h2>
+
+    <h3>האם אתה בטוח שאתה רוצה למחוק?</h3>
+    <div>
+        <h4>מוצר</h4>
+        <hr />
+        <dl class="dl-horizontal" dir="rtl">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductDescription)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Vegi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vegi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductImage)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("חזור", "Index")
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@model HummusInWonderland.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div dir="rtl">
+    <h2>הזמנה @Html.DisplayFor(model => model.OrderID)</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Customer.FirstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Customer.FirstName)
+            </dd>
+
+            <dt>
+                סניף
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Branch.BranchCity);
+                @Html.DisplayFor(model => model.Branch.BranchStreet)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OrderDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </dd>
+        </dl>
+
+        <table dir="rtl" class="table">
+            <tr>
+                <th>
+                    שם מוצר
+                </th>
+                <th>
+                    מחיר
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <td>
+                        @item.ProductName
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                </tr>
+            }
+        </table>
+        <p>
+            @{var sessionUser = (HummusInWonderland.Models.Customer)HttpContext.Current.Session["user"];}
+            @if (sessionUser != null && sessionUser.FirstName == "admin")
+            { 
+                @Html.ActionLink("ערוך", "Edit", new { id = Model.OrderID }) @Html.Display("|")
+            }
+            @Html.ActionLink("חזור", "Index")
+        </p>
+    </div>
+</div>

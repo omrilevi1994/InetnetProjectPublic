@@ -1,0 +1,25 @@
+﻿@model IEnumerable<HummusInWonderland.Models.OrderYearsViewModel>
+
+<h3 dir="rtl">סטטיסטיקות של הזמנות בשנה</h3>
+
+<p>
+</p>
+
+<table class="table" dir="rtl" style="align-content:center" align="center" border="1">
+    <tr>
+        <th >@Html.DisplayNameFor(model => model.year)</th>
+        <th>@Html.DisplayNameFor(model => model.postCount)</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="align-content:center">
+        <td>
+            @Html.DisplayFor(modelItem => item.year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postCount)
+        </td>
+    </tr>
+}
+
+</table>

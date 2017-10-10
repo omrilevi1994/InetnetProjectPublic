@@ -1,0 +1,107 @@
+﻿@model IEnumerable<HummusInWonderland.Models.Branch>
+
+@{
+    ViewBag.Title = "סניפים";
+}
+
+<h2 dir="rtl">סניפים</h2>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#BranchName').autocomplete({
+            source: '@Url.Action("GetBranchName")'
+        });
+    });
+
+    $(document).ready(function () {
+        $('#City').autocomplete({
+            source: '@Url.Action("GetCity")'
+        });
+    });
+
+    </script>
+}
+
+@{var user = (HummusInWonderland.Models.Customer)HttpContext.Current.Session["user"];}
+
+@using (Html.BeginForm("Index", "Branch", FormMethod.Post))
+{
+    <p dir="rtl" align="center" style="align-content">
+        <font size="4">
+            <label>חיפוש : </label>
+        </font>
+        <br />
+        <ta dir="rtl" align="center">
+            <label>שם סניף : </label>
+            <input type="text" name="BranchName" id="BranchName" />
+            <label>עיר : </label>
+            <input type="text" name="City" id="City" />
+            <input type="submit" name="שלח" value="חפש" />
+        </ta>
+    </p>
+}
+
+@if (user != null && user.FirstName == "admin")
+{
+    <p dir="rtl">
+    @{var sessionUser = (HummusInWonderland.Models.Customer)HttpContext.Current.Session["user"];}
+    @if (sessionUser != null && sessionUser.FirstName == "admin") { 
+        @Html.ActionLink("צור סניף חדש", "Create")
+    }
+    </p>
+}
+<br/>
+<br />
+<table class="table" dir="rtl" align="center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchStreet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchsHouseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BranchsPhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchStreet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchsHouseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BranchsPhoneNumber)
+        </td>
+        <td>
+            @{var sessionUser = (HummusInWonderland.Models.Customer)HttpContext.Current.Session["user"];}
+            @if (sessionUser != null && sessionUser.FirstName == "admin")
+            {
+                @Html.Display("|") @Html.ActionLink("ערוך ", "Edit", new { id = item.BranchID }) <text>|</text>
+                @Html.Display("|") @Html.ActionLink("מחק ", "Delete", new { id = item.BranchID }) <text>|</text>
+                @Html.Display("|") @Html.ActionLink("פרטים ", "Details", new { id = item.BranchID })<text>|</text>
+}
+        </td>
+    </tr>
+}
+
+</table>

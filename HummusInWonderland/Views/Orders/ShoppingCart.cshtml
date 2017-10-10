@@ -1,0 +1,138 @@
+﻿@model IEnumerable<HummusInWonderland.Models.Product>
+
+@{
+    ViewBag.Title = "סל קניות";
+}
+<h2 dir="rtl">סל קניות</h2>
+<div id="addHereStuff">
+@if (Model.Count() > 0)
+{
+    <p style="display:none;text-align: center;">אין פריטים בסל קניות</p>
+}
+@if (Model.Count() == 0)
+{
+    <p style="text-align: center;">אין פריטים בסל קניות</p>
+}
+</div>
+<div id="orderSuccedded" style="display:none;">
+    <p style="text-align: center;">הזמנה בוצעה</p>
+</div>
+<div id="addHereStuff">
+@if (Model.Count() > 0)
+{
+<div id="shoppingBag">
+    <div class="form-group" dir="rtl">
+        <label for="sel1">בחר סניף:</label>
+        <select class="form-control" id="select-branch">
+            @foreach (var branch in ViewBag.branches)
+            {
+                <option value="@branch.BranchID">@branch.DisplayName</option>
+            }
+            </select>
+    </div>
+    <table class="table" dir="rtl">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vegi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vegi)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ProductImage)" />
+                </td>
+                <td>
+                    <a id="remove_@item.ProductID" onclick="removeFromCart(@item.ProductID, @item.Price)">הסר מהסל</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <span>
+        <label style="text-align:right; font:bold; display:inline-block">סך הכל לתשלום:</label>
+        <label id="price" style="text-align:right; font:bold; display:inline-block">@ViewBag.Total</label>
+    </span>
+    <button id="pay" type="button" class="pay">לתשלום</button>
+
+</div>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        function removeFromCart(prodId, price) {
+            $.ajax({
+                url: '/Orders/DeleteFromCart',
+                type: 'Post',
+                dataType: 'Json',
+                data: { productID: prodId },
+                success: (function (result) {
+
+                    $('#remove_' + prodId).parent().parent().hide(500);
+
+                    if (result == 0) {
+                        $("#shoppingBag").css("display", "none");
+                        $("#addHereStuff.p").addClass('visible');
+                    }
+
+                    var totalPrice = $("#price").text();
+                    $("#price").text(totalPrice - price)
+                }),
+                error: (function (xhr, status) {
+                    alert(status);
+                })
+            });
+        }
+
+        $("#pay").click(function () {
+            $.ajax({
+                url: '/Orders/Pay',
+                type: 'Post',
+                dataType: 'Json',
+                data: { branchId: $("#select-branch").val() },
+                success: (function (result) {
+
+                    if (result) {
+                        $("#shoppingBag").fadeOut(500);
+                        $("#orderSuccedded").fadeIn(500);
+                    }
+                    else {
+                        alert("רק משתמש קיים יכול לבצע הזמנה, אנא התחבר ונסה שנית");
+                    }
+                }),
+                error: (function (xhr, status) {
+                    alert(status);
+                })
+            });
+        });
+    </script>
+}
+
+

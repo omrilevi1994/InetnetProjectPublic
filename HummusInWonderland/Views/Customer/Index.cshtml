@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HummusInWonderland.Models.Customer>
+
+<p>
+    @Html.ActionLink("לקוחות", "Create")
+</p>
+<table class="table" dir="rtl" border="1">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @{var sessionUser = (HummusInWonderland.Models.Customer)HttpContext.Current.Session["user"];}
+            @if (sessionUser != null && sessionUser.FirstName == "admin")
+            {
+                @Html.Display("|") @Html.ActionLink("ערוך ", "Edit", new { id = item.CustomerID }) <text>|</text>
+                @Html.Display("|") @Html.ActionLink("מחק ", "Delete", new { id = item.CustomerID }) <text>|</text>
+                @Html.Display("|") @Html.ActionLink("פרטים ", "Details", new { id = item.CustomerID })<text>|</text>
+            }
+        </td>
+    </tr>
+}
+
+</table>

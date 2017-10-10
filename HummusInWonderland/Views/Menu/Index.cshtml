@@ -1,0 +1,110 @@
+﻿@model IEnumerable<HummusInWonderland.Models.Product>
+
+@{
+    ViewBag.Title = "תפריט";
+}
+<div class="row">
+    <h2 dir="rtl">תפריט</h2>
+    @{var cart = (List<int>)System.Web.HttpContext.Current.Session["shoppingCart"];}
+    @{var user = (HummusInWonderland.Models.Customer)HttpContext.Current.Session["user"];}
+</div>
+<div class="row">
+     @if (user != null && user.FirstName == "admin")
+    {
+        <div class="col-md-1" dir="rtl">
+            @Html.ActionLink("הוסף מוצר", "Create")
+        </div>
+    }
+    @using (Html.BeginForm("Index", "Menu", FormMethod.Post))
+    {
+        <div class="col-lg-10" dir="rtl">
+            <label>חיפוש : </label>
+            <div>
+                <label>צמחוני : </label>
+                @Html.DropDownList("Vegi", new SelectList(Enum.GetValues(typeof(HummusInWonderland.Controllers.OPTIONS))), " ")
+                <label>יש תמונה : </label>
+                @Html.DropDownList("isPic", new SelectList(Enum.GetValues(typeof(HummusInWonderland.Controllers.OPTIONS))), " ")
+                <label>מחיר : </label>
+                <span id="min">0</span>
+                <input type="range" min="0" max="@ViewBag.MaxPrice" value="@ViewBag.MaxPrice" name="Price" id="Price" onchange="showVal(this.value)" />
+                <span id="max">@ViewBag.MaxPrice</span>
+               
+                <input type="submit" name="שלח" value="חפש" />
+
+            </div>
+        </div>
+    }
+</div>
+<div class="row" id="menu" style="margin-top:20px;">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+        <div class="list-group" dir="rtl">
+            @foreach (var item in Model)
+            {
+                <div class="list-group-item">
+                    <h3 class="list-group-item-heading">
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </h3>
+                    <p class="list-group-item-text">
+                        @Html.DisplayFor(modelItem => item.ProductDescription)
+                    </p>
+                    <div style="margin-top: 37px;">
+                        <div> @Html.DisplayFor(modelItem => item.Price) $</div>
+                        <div>צימחוני? @Html.DisplayFor(modelItem => item.Vegi)</div>
+                    </div>
+                    <div class="row actions">
+                        @if (user != null && user.FirstName == "admin")
+                        {
+                            <div style="display: inline-block;">
+                                <a>@Html.ActionLink("ערוך", "Edit", new { productId = item.ProductID })</a> |
+                                <a>@Html.ActionLink("מחק", "delete", new { productId = item.ProductID })</a> |
+                            </div>
+                        }
+                        @if (cart != null && cart.Contains(item.ProductID))
+                        {
+                            <a id="inCart" style="pointer-events:none;">בסל</a>
+                        }
+                        else
+                        {
+                            <a id="inCart_@item.ProductID" style="display:none;pointer-events:none;">בסל</a>
+                            <a id="addToCart_@item.ProductID" onclick="addToCart(@item.ProductID)">הוסף לסל</a>
+                        }
+                    </div>
+                    <img src="@Html.DisplayFor(modelItem => item.ProductImage)"/>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        $("#Price").change(function () {
+            $("#max").text($(this).val());
+        });
+
+        function showVal(newVal) {
+            document.getElementById("max").innerHTML = newVal;
+        }
+
+        function addToCart(prodId) {
+            $.ajax({
+                url: '/Orders/AddToCart',
+                type: 'Post',
+                dataType: 'Json',
+                data: { productID: prodId },
+                success: (function (result) {
+                    $('#addToCart_' + prodId).addClass('invisible');
+                    $('#inCart_' + prodId).addClass('visible');
+                }),
+                error: (function (xhr, status) {
+                    alert(status);
+                })
+            });
+        }
+    </script>
+}
+
+

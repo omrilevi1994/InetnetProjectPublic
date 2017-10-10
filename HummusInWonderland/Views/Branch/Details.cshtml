@@ -1,0 +1,64 @@
+﻿@model HummusInWonderland.Models.Branch
+
+@{
+    ViewBag.Title = "פרטי הסניף";
+}
+
+<h2 dir="rtl">פרטי סניף</h2>
+
+@{var user = (HummusInWonderland.Models.Customer)HttpContext.Current.Session["user"];}
+
+<fieldset style="margin-left:150px">
+    <div dir="rtl">
+        <hr />
+        <div class="dl-horizontal" style="float:right">
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.BranchName):</label>
+                @Html.DisplayFor(model => model.BranchName)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.BranchCity):</label>
+                @Html.DisplayFor(model => model.BranchCity)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.BranchStreet):</label>
+                @Html.DisplayFor(model => model.BranchStreet)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.BranchsHouseNumber):</label>
+                @Html.DisplayFor(model => model.BranchsHouseNumber)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.CoordX):</label>
+                @Html.DisplayFor(model => model.CoordX)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.CoordY):</label>
+                @Html.DisplayFor(model => model.CoordY)
+            </div>
+
+            <div>
+                @if (Model.BranchsPhoneNumber != null)
+                {
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.BranchsPhoneNumber):</label>
+                    @Html.DisplayFor(model => model.BranchsPhoneNumber)
+                }
+            </div>
+        </div>
+    </div>
+</fieldset>
+<p dir="rtl">
+    @if (user != null && user.FirstName == "admin")
+    {
+        @Html.ActionLink("ערוך", "Edit", new { id = Model.BranchID }) <text>|</text>
+        @Html.ActionLink("לקוחות אשר הזמינו בסניף זה", "CustomersByBranch", "Customer", new { id = Model.BranchID }, null) <text>|</text>
+        @Html.ActionLink("הזמנות מסניף זה", "OrdersByBranch", "Orders", new { id = Model.BranchID }, null) <text>|</text>
+
+}
+    @Html.ActionLink("חזור", "Index")
+</p>

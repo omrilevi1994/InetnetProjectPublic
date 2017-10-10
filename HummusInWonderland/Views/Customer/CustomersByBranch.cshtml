@@ -1,0 +1,52 @@
+﻿@model IEnumerable<HummusInWonderland.Models.BranchCustomerView>
+
+@{
+    ViewBag.Title = "CustomersByBranch";
+}
+
+<h2>לקוחות לפי סניף</h2>
+
+<table class="table">
+    <tr>
+        <th class="tableH">
+            @Html.Label("שם סניף")
+        </th>
+        <th class="tableH">
+            @Html.Label("עיר הסניף")
+        </th>
+        <th class="tableH">
+            @Html.Label("שם פרטי לקוח")
+        </th>
+        <th class="tableH">
+            @Html.Label("שם משפחה לקוח")
+        </th>
+        <th class="tableH">
+            @Html.Label("תאריך לידה")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.branchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.branchCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.lastName)
+            </td>
+            <td>
+                @item.birthDate.ToShortDateString()
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("חזור לפרטי הסניף", "Details", "Branch", new { id = Model.First().branchId }, null)
