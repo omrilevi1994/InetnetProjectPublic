@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "חומוס פלא";
+}
+
+<div class="row" style="height:30px;">
+
+</div>
+<div class="row">
+    <div class="col-lg-10">
+        <div id="front-gallery" dir="ltr">
+            <div><img src="~/Images/slide/IMG_11.JPG" /></div>
+            <div><img src="~/Images/slide/IMG_14.JPG" /></div>
+            <div><img src="~/Images/slide/IMG_15.JPG" /></div>
+            <div><img src="~/Images/slide/IMG_31.JPG" /></div>
+            <div><img src="~/Images/slide/IMG_4.JPG" /></div>
+            <div><img src="~/Images/slide/IMG_62.JPG" /></div>
+        </div>
+    </div>
+    <div class="col-lg-2 well">
+        <p>
+            אנחנו פתוחים 7 ימים בשבוע
+        </p>
+        <b>
+            רחוב קרליבך 7, תל-אביב
+        </b>
+        <p>
+            בימים א-ה	10:00-22:00
+        </p>
+        <p>
+            ביום שישי	10:00-18:00
+        </p>
+        <p>
+            ביום שבת	10:00-20:00
+        </p>
+    </div>
+
+
+   
+
+</div>
+<div class="row">
+    <div id="map" style="height:400px;"></div>
+</div>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#front-gallery').slick({
+            dots: true,
+            lazyload: 'ondemand',
+            autoplay: true,
+            arrows: false,
+            slidesToShow: 3,
+        });
+    });
+</script>
+
+<script>
+    var map;
+    function addBranchestomap() {
+        $.ajax({
+            url: '/Home/GetBranches',
+            type: 'Post',
+            dataType: 'Json',
+            data: {},
+            success: (function (result) {
+                for (i = 0; i < result.length; i++) {
+                    addMarker(result[i].CoordX, result[i].CoordY);
+                }
+            })
+        });
+    }
+
+    
+    function initMap() {
+        var styleArray = [{ "featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{ "color": "#444444" }] }, { "featureType": "landscape", "elementType": "all", "stylers": [{ "color": "#f2f2f2" }] }, { "featureType": "poi", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "all", "stylers": [{ "saturation": -100 }, { "lightness": 45 }] }, { "featureType": "road", "elementType": "geometry", "stylers": [{ "visibility": "on" }, { "hue": "#ff0000" }] }, { "featureType": "road", "elementType": "geometry.stroke", "stylers": [{ "color": "#0ab5a1" }, { "weight": "0.25" }] }, { "featureType": "road", "elementType": "labels.text.fill", "stylers": [{ "color": "#0ab5a1" }] }, { "featureType": "road.highway", "elementType": "all", "stylers": [{ "visibility": "simplified" }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#0ab5a1" }, { "lightness": "82" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "hue": "#ff0000" }, { "weight": "1" }] }, { "featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "water", "elementType": "all", "stylers": [{ "color": "#0ab5a1" }, { "visibility": "on" }] }];
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 32.06736, lng: 34.78317 },
+            pan: true,
+            zoom: 18,
+            options: { styles: styleArray }
+        });
+        addBranchestomap();
+
+    }
+
+
+    function addMarker(x, y) {
+        var marker = new google.maps.Marker({
+            position: { lat: x, lng: y },
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCD-QOkuvFFLAtQwf9qlPnYMCaRLWFu2bo&callback=initMap">
+</script>

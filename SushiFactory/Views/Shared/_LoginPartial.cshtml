@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+@{var sessionUser = (SushiFactory.Models.Customer)HttpContext.Current.Session["user"];}
+@if (sessionUser != null)
+{
+    using (Html.BeginForm("Logoff", "Customer", FormMethod.Post, new { id = "logoutForm", @class = "navbar-left" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + sessionUser.FirstName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">התנתק</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-left">
+        <li>@Html.ActionLink("הרשמה", "Create", "Customer", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("התחברות", "Login", "Customer", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
