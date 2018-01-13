@@ -8,39 +8,29 @@ using System.Data.Entity.Migrations;
 
 namespace SushiFactory.DAL
 {
-    public class SushiInitializer : System.Data.Entity.DropCreateDatabaseAlways<SusshiFactoryContext>
+    public class SushiInitializer : System.Data.Entity.DropCreateDatabaseAlways<SushiFactoryContext>
     {
-        protected override void Seed(SusshiFactoryContext context)
+        protected override void Seed(SushiFactoryContext context)
         {
- 
             var menu = new List<Product>
             {
-                new Product { ProductID = 1,   ProductName = "חומוס בשר",
-                    ProductDescription = "חומוס עם בשר בקר טחון, גרגרים, פטרוזיליה, שמן זית, כמון, פפריקה, 2פיתות, חמוצים",
-                Price = 38, ProductImage = "/Images/hummus_meat_top.png", Vegi = false},
-                new Product { ProductID = 2,   ProductName = "חומוס פטריות",
-                    ProductDescription = "חומוס עם פטריות שלמות, מבושלות עם בצל ותבלינים. מוגש עם גרגרים, פטרוזיליה, שמן זית, כמון, פפריקה, 2פיתות, חמוצים",
-                Price = 34, ProductImage = "/Images/hummus_mushroom_top.png", Vegi = true},
-                new Product { ProductID = 3,   ProductName = "חומוס צנובר",
-                    ProductDescription = "חומוס עם צנובר קלוי בתנור, מוגש עם גרגרים, פטרוזיליה, שמן זית, כמון, פפריקה, 2פיתות, חמוצים",
-                Price = 34, ProductImage = "/Images/hummus_tznubar_top.png", Vegi = true},
-                new Product { ProductID = 4,   ProductName = "חומוס",
-                    ProductDescription = "חומוס עם גרגרים, פטרוזיליה, שמן זית, ביצה, כמון, פפריקה, 2פיתות, חמוצים",
-                Price = 25, ProductImage = "/Images/hummus_top.png", Vegi = true},
-                new Product { ProductID = 5,   ProductName = "חומוס פול",
-                    ProductDescription = "חומוס עם פול גרגרים, פטרוזיליה, שמן זית, ביצה, כמון, פפריקה, , 2פיתות, חמוצים",
-                Price = 25,ProductImage = "/Images/hummus_ful_top.png", Vegi = true},
-                new Product { ProductID = 6,   ProductName = "חומוס משאוושה",
-                    ProductDescription = "משוואשה על חומוס מוגשת עם גרגרים, פטרוזיליה, שמן זית, ביצה, כמון, פפריקה, 2פיתות, חמוצים",
-                Price = 25,ProductImage = "/Images/mashausha_top.png", Vegi = true},
-                new Product { ProductID = 7,   ProductName = "המשולשת",
-                    ProductDescription = "1/3חומוס 1/3משוואשה 1/3פול, מוגשת עם גרגרים, פטרוזיליה, שמן זית, ביצה, כמון, פפריקה, 2פיתות, חמוצים",
-                Price = 25,ProductImage = "/Images/hummus_tri_top.png", Vegi = true},
-                new Product { ProductID = 8,   ProductName = "מנה סלט",
-                    ProductDescription = "מנת סלט עם חומוס, טחינה, גרגרים, וביצה",
-                Price = 25,ProductImage = "/hummus_salad_front.png", Vegi = true},
-
+                new Product { ProductID = 1,   ProductName = "הקוקטייל",
+                    ProductDescription = "אספרגוס טמפורה, אבוקדו, צנון מוחמץ, בצל ירוק, שומשום, שקדים קלויים וטריאקי",
+                Price = 38, ProductImage = "/Images/the_Cocktail.jpg", Vegi = false},
+                new Product { ProductID = 2,   ProductName = "הצמחוני",
+                    ProductDescription = "פטריות שיטאקה, אבוקדו, מלפפון, גזר, בצל ירוק, ספייסי מיונז וטריאקי",
+                Price = 34, ProductImage = "/Images/the_vegan.jpg", Vegi = true},
+                new Product { ProductID = 3,   ProductName = "המעורבב",
+                    ProductDescription = "מיקס דגים לבנים, אבוקדו, שקדים קלויים, בצל ירוק וספייסי מיונז",
+                Price = 34, ProductImage = "/Images/the_mix.jpg", Vegi = true},
+                new Product { ProductID = 4,   ProductName = "הפירותי",
+                    ProductDescription = "שרימפ, סקלופ, קלמארי, ביצי סלמון, בצל ירוק, ספייסי מיונז וטריאקי",
+                Price = 25, ProductImage = "/Images/the_fruity.jpg", Vegi = true},
+                new Product { ProductID = 5,   ProductName = "הצלופח",
+                    ProductDescription = "צלופח מבושל בטריאקי, אבוקדו, אושינקו, שקדים קלויים, בצל ירוק ושומשום לבן",
+                Price = 25,ProductImage = "/Images/the_eel.jpg", Vegi = true},
             };
+
             menu.ForEach(m => context.Menu.AddOrUpdate(p => p.ProductID, m));
             context.SaveChanges();
 
@@ -87,11 +77,11 @@ namespace SushiFactory.DAL
                 new Order { OrderID = 7, CustomerId = customer.Single(s => s.LastName == "מילר").CustomerID, OrderDate = DateTime.Parse("2016-06-14"), BranchID = branch.Single(b => b.BranchCity == "תל אביב").BranchID}
 
             };
-            orders.ForEach(o => {
+            /*orders.ForEach(o => {
                 o.Products.Add(menu.Single(s => s.ProductName == "חומוס"));
                 o.Products.Add(menu.Single(s => s.ProductName == "חומוס פטריות"));
                 context.Orders.Add(o);
-            });
+            });*/
 
             context.SaveChanges();
         }

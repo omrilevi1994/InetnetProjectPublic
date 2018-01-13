@@ -4,9 +4,9 @@ using SushiFactory.Models;
 
 namespace SushiFactory.DAL
 {
-    public class SusshiFactoryContext : DbContext
+    public class SushiFactoryContext : DbContext
     {
-        public SusshiFactoryContext() : base("SusshiFactoryContext")
+        public SushiFactoryContext() : base("SushiFactoryContext")
 	    {
 	    }
 

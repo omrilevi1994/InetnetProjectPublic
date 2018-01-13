@@ -21,7 +21,7 @@ namespace SushiFactory.Controllers
 
     public class MenuController : Controller
     {
-        private SusshiFactoryContext db = new SusshiFactoryContext();
+        private SushiFactoryContext db = new SushiFactoryContext();
         // GET: Menu
         public ActionResult Index()
         {

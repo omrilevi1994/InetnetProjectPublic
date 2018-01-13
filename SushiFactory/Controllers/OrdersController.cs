@@ -12,7 +12,7 @@ namespace SushiFactory.Controllers
 {
     public class OrdersController : Controller
     {
-        private SusshiFactoryContext db = new SusshiFactoryContext();
+        private SushiFactoryContext db = new SushiFactoryContext();
 
         // GET: Orders
         public ActionResult Index()

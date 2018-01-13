@@ -12,7 +12,7 @@ namespace SushiFactory.Controllers
 {
     public class BranchController : Controller
     {
-        private SusshiFactoryContext db = new SusshiFactoryContext();
+        private SushiFactoryContext db = new SushiFactoryContext();
 
         // GET: Branch
         public ActionResult Index()

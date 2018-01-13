@@ -10,7 +10,7 @@ namespace SushiFactory.Controllers
 {
     public class HomeController : Controller
     {
-        private SusshiFactoryContext db = new SusshiFactoryContext();
+        private SushiFactoryContext db = new SushiFactoryContext();
 
         public ActionResult Index()
         {
