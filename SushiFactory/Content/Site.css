@@ -61,7 +61,7 @@ a.navbar-brand {
 
 #menu .list-group-item img {
     position: absolute;
-    z-index: 10000;
+    z-index: 1000;
     height: 100px;
     top: 4px;
     left: 12px;
@@ -78,7 +78,7 @@ a.navbar-brand {
 }
 
 #menu .list-group-item h3{
-   background-color: #03A9F4;
+   background-color: #af8d5d;
     border: 1px solid transparent;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
@@ -98,4 +98,8 @@ th {
 
 .list-group-item-text {
     padding-left: 109px;
+}
+
+.table img {
+    height: 10%
 }

@@ -22,13 +22,13 @@ namespace SushiFactory.DAL
                 Price = 34, ProductImage = "/Images/the_vegan.jpg", Vegi = true},
                 new Product { ProductID = 3,   ProductName = "המעורבב",
                     ProductDescription = "מיקס דגים לבנים, אבוקדו, שקדים קלויים, בצל ירוק וספייסי מיונז",
-                Price = 34, ProductImage = "/Images/the_mix.jpg", Vegi = true},
+                Price = 34, ProductImage = "/Images/the_mix.jpg", Vegi = false},
                 new Product { ProductID = 4,   ProductName = "הפירותי",
                     ProductDescription = "שרימפ, סקלופ, קלמארי, ביצי סלמון, בצל ירוק, ספייסי מיונז וטריאקי",
-                Price = 25, ProductImage = "/Images/the_fruity.jpg", Vegi = true},
+                Price = 25, ProductImage = "/Images/the_fruity.jpg", Vegi = false},
                 new Product { ProductID = 5,   ProductName = "הצלופח",
                     ProductDescription = "צלופח מבושל בטריאקי, אבוקדו, אושינקו, שקדים קלויים, בצל ירוק ושומשום לבן",
-                Price = 25,ProductImage = "/Images/the_eel.jpg", Vegi = true},
+                Price = 25,ProductImage = "/Images/the_eel.jpg", Vegi = false},
             };
 
             menu.ForEach(m => context.Menu.AddOrUpdate(p => p.ProductID, m));

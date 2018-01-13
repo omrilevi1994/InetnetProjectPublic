@@ -160,6 +160,6 @@ C:\David\devl\InternetProject\SushiFactory\bin\Microsoft.Owin.Security.OAuth.xml
 C:\David\devl\InternetProject\SushiFactory\bin\Microsoft.Owin.Security.Google.xml
 C:\David\devl\InternetProject\SushiFactory\bin\Microsoft.Owin.Security.Twitter.xml
 C:\David\devl\InternetProject\SushiFactory\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\David\devl\InternetProject\SushiFactory\obj\Debug\SushiFactory.csprojResolveAssemblyReference.cache
 C:\David\devl\InternetProject\SushiFactory\obj\Debug\SushiFactory.dll
 C:\David\devl\InternetProject\SushiFactory\obj\Debug\SushiFactory.pdb
+C:\David\devl\InternetProject\SushiFactory\obj\Debug\SushiFactory.csprojResolveAssemblyReference.cache
