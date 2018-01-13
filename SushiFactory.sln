@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SushiFactory", "HummusInWonderland\SushiFactory.csproj", "{3CBFFB96-1895-4583-8C7A-F90CDF201DFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SushiFactory", "SushiFactory\SushiFactory.csproj", "{3CBFFB96-1895-4583-8C7A-F90CDF201DFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
