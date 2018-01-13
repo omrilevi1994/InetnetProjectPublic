@@ -45,13 +45,13 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-/HummusInWonderland/bin/
+/SushiFactory/bin/
 .vs/config/applicationhost.config
 .vs/config/applicationhost.config
-HummusInWonderland/bin/HummusInWonderland.dll
-HummusInWonderland/bin/HummusInWonderland.pdb
-HummusInWonderland/obj/Debug
+SushiFactory/bin/SushiFactory.dll
+SushiFactory/bin/SushiFactory.pdb
+SushiFactory/obj/Debug
 .vs/
-HummusInWonderland/bin/
-/HummusInWonderland/Images
-/HummusInWonderland/Migrations
+SushiFactory/bin/
+/SushiFactory/Images
+/SushiFactory/Migrations
