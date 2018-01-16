@@ -42,6 +42,8 @@ namespace SushiFactory.DAL
                 Gender = Gender.male, Email = "omrilevi1994@gmail.com", City ="ראשון לציון", Street = "צבי פרנק", Password ="1234567", PhoneNumber = "0526624476"},
                 new Customer {CustomerID = 3, FirstName = "ליטל", LastName ="נסרי", BirthDate = DateTime.Parse("1994-03-11") ,
                 Gender = Gender.female, Email = "litalnasri@gmail.com", City ="תל אביב", Street = "אבן גבירול", Password ="1234567", PhoneNumber = "0546177891"},
+                new Customer {CustomerID = 4, FirstName = "admin", LastName ="admin", BirthDate = DateTime.Parse("1986-02-18") ,
+                Gender = Gender.female, Email = "admin@gmail.com", City ="תל אביב", Street = "הדוגמנויות", Password ="111111", PhoneNumber = "0508362873"},
             };
             customer.ForEach(c => context.Customers.AddOrUpdate(p => p.CustomerID, c));
             context.SaveChanges();

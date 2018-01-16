@@ -224,12 +224,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\slide\IMG_11.JPG" />
-    <Content Include="Images\slide\IMG_14.JPG" />
-    <Content Include="Images\slide\IMG_15.JPG" />
-    <Content Include="Images\slide\IMG_31.JPG" />
-    <Content Include="Images\slide\IMG_4.JPG" />
-    <Content Include="Images\slide\IMG_62.JPG" />
+    <Content Include="Images\slide\71nYq1V-LQL._SL1280_.jpg" />
+    <Content Include="Images\slide\a-california-sushi-spot-invented-the-sushi-doughnut.jpg" />
+    <Content Include="Images\slide\c700x420.jpg" />
+    <Content Include="Images\slide\Seafoods_Fish_Food_Sushi_513144_1280x720.jpg" />
+    <Content Include="Images\slide\sweet-chilli-chicken-sushi-87983-1.jpeg" />
+    <Content Include="Images\slide\TsukijiSushi.jpg" />
     <Content Include="Images\the_cocktail.jpg" />
     <Content Include="Images\the_eel.jpg" />
     <Content Include="Images\the_fruity.jpg" />
@@ -256,7 +256,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\slick.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Videos\hummusvid.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
