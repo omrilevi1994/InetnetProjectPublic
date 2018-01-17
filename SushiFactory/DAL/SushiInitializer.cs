@@ -52,7 +52,7 @@ namespace SushiFactory.DAL
             {
                 new Branch {BranchID = 1, BranchCity= "תל אביב", BranchName = "סושי פקטורי", BranchsHouseNumber = 1,BranchsPhoneNumber = "03-4678953", BranchStreet = "אבן גבירול" , CoordX = 32.076237, CoordY = 34.781488},
                 new Branch {BranchID = 2, BranchCity= "ירושלים", BranchName = "סושי פקטורי", BranchsHouseNumber = 2,BranchsPhoneNumber = "04-7895034", BranchStreet = "האגוז", CoordX = 31.784320, CoordY = 35.212737},
-                new Branch {BranchID = 3, BranchCity= "ראשון לציון", BranchName = "סושי פקטורי", BranchsHouseNumber = 3,BranchsPhoneNumber = "03-6457890", BranchStreet = "רוטשילד", CoordX = 31.964140, CoordY = 34.796997},
+                new Branch {BranchID = 3, BranchCity= "ראשון לציון", BranchName = "סושי פקטורי", BranchsHouseNumber = 3,BranchsPhoneNumber = "03-6457890", BranchStreet = "רוטשילד", CoordX = 31.9641349, CoordY = 34.805436},
                 new Branch {BranchID = 4, BranchCity= "חיפה", BranchName = "סושי פקטורי", BranchsHouseNumber = 4,BranchsPhoneNumber = "09-8765942", BranchStreet = "הנמל", CoordX = 32.819191, CoordY = 35.000484}
             };
             branch.ForEach(b => context.Branches.AddOrUpdate(p => p.BranchID, b));
