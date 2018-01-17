@@ -47,8 +47,4 @@ Temporary Items
 .apdisk
 .vs/config/applicationhost.config
 .vs/config/applicationhost.config
-HummusInWonderland/bin/HummusInWonderland.dll
-HummusInWonderland/bin/HummusInWonderland.pdb
-HummusInWonderland/obj/Debug/*
-HummusInWonderland/.vs/*
 ../.vs
